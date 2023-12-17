@@ -14,25 +14,26 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import com.farez.gamehub_compose.ui.theme.biruMuda
 
 @Preview
 @Composable
-fun CurvedScreen() {
+fun CurvedBackground() {
     Box(
         modifier = Modifier.fillMaxSize()
     ){
         TopCurvedContainer(
             alignment = Alignment.TopCenter,
             fracttion = 0.5f,
-            containerColor = Color(0xFF1BBBB1),
-            backgroundColor = Color.White,
-            contentColor = Color.White
+            containerColor = Color.White,
+            backgroundColor = biruMuda,
+            contentColor = biruMuda
         )
         BottomCurvedContainer(
             fraction = 0.5f,
             alignment = Alignment.BottomCenter,
-            containerColor = Color.White,
-            backgroundColor = Color(0xFF1BBBB1),
+            containerColor = biruMuda,
+            backgroundColor = Color.White,
             contentColor = Color.Black
         )
     }
@@ -60,7 +61,7 @@ fun TopCurvedContainer(
 
         }
         Card (
-            shape = RoundedCornerShape(bottomEndPercent = 20),
+            shape = RoundedCornerShape(bottomEndPercent = 30),
             colors = CardDefaults.cardColors(
                 containerColor = containerColor,
                 contentColor = contentColor
@@ -96,7 +97,7 @@ fun BottomCurvedContainer(
 
         }
         Card (
-            shape = RoundedCornerShape(topStartPercent = 20),
+            shape = RoundedCornerShape(topStartPercent = 30),
             colors = CardDefaults.cardColors(
                 containerColor = containerColor,
                 contentColor = contentColor
