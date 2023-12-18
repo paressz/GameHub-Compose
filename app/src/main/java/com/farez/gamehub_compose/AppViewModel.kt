@@ -1,42 +1,27 @@
 package com.farez.gamehub_compose
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
-import com.farez.gamehub_compose.data.database.GameDao
-import com.farez.gamehub_compose.data.database.GameDatabase
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.farez.gamehub_compose.data.model.Game
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import com.farez.gamehub_compose.data.repository.GameRepository
+import kotlinx.coroutines.flow.Flow
 
-class AppViewModel(application: Application) : AndroidViewModel(application) {
-    private var gameDatabase : GameDatabase
-    private var gameDao: GameDao
-    private lateinit var gameList : List<Game>
-    private val gameFromSpek = MutableLiveData<List<Game>>()
-    private val safeGame = MutableLiveData<List<Game>>()
+class AppViewModel(private val gameRepository: GameRepository) : ViewModel() {
 
-    init {
-        gameDatabase = GameDatabase.getInstance(application.applicationContext)
-        gameDao = gameDatabase.gameDao()
-        if (gameList.isEmpty()) {
-            viewModelScope.launch(Dispatchers.IO) { gameList = gameDao.allGame }
-        }
+    fun getGames(): Flow<List<Game>> = gameRepository.getAllGames()
 
+    fun getSafeGames(): Flow<List<Game>> = gameRepository.getSafeGames()
+
+}
+
+
+class ViewModelFactory(val gameRepository: GameRepository) :
+    ViewModelProvider.NewInstanceFactory() {
+    @Suppress("UNCHECKED_CAST")
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(AppViewModel::class.java)) return AppViewModel(
+            gameRepository
+        ) as T
+        throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
     }
-
-    fun getGameFromSpek(cpu : String, sRam : String, sHdd : String, vga : String) : LiveData<List<Game>> {
-        val ram = sRam.toInt()
-        val hdd  = sHdd.toInt()
-        val list = gameList.filter { game -> game.cpu == cpu && game.ram <= ram && game.hdd <= hdd && game.vga == vga  }
-        gameFromSpek.value = list
-        return gameFromSpek
-    }
-
-    fun getSafeGame(): LiveData<List<Game>> = safeGame.also {
-        it.value = gameList.filter { game -> game.isGameDewasa.not() }
-    }
-    fun getGameFromName(name : String) : Game = gameList.first { game -> game.nama == name }
 }

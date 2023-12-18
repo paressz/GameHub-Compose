@@ -14,7 +14,6 @@ import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -35,13 +34,24 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.farez.gamehub_compose.R
+import com.farez.gamehub_compose.ui.navigation.Screen
 import com.farez.gamehub_compose.ui.theme.biruMuda
 import com.farez.projectsbp.activity.loginactivity.CurvedBackground
 
-@Preview(device = "spec:width=2340px,height=1080px,dpi=440,orientation=landscape")
+@Preview
 @Composable
-fun WelcomeScreen() {
+fun WelcomePrev() {
+    WelcomeScreen(navController = rememberNavController())
+}
+
+@Composable
+fun WelcomeScreen(
+    navController: NavController
+) {
+    val onClick = { navController.navigate(Screen.Gamelist.route) }
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -66,7 +76,7 @@ fun WelcomeScreen() {
                             .height(120.dp),
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.Center
-                    ){
+                    ) {
                         Icon(
                             painterResource(id = R.drawable.logo),
                             contentDescription = "App Logo",
@@ -92,6 +102,7 @@ fun WelcomeScreen() {
                     }
                 }
             }
+
             Configuration.ORIENTATION_PORTRAIT -> {
                 Column(
                     modifier = Modifier
@@ -138,15 +149,18 @@ fun WelcomeScreen() {
                         .padding(16.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Box(modifier = Modifier
-                        .padding(start = 24.dp)
-                        .fillMaxWidth(0.9f)) {
+                    Box(
+                        modifier = Modifier
+                            .padding(start = 24.dp)
+                            .fillMaxWidth(0.9f)
+                    ) {
                         IntroText(Color.White)
                     }
-                    NextButton()
+                    NextButton(onClick)
                 }
 
             }
+
             Configuration.ORIENTATION_PORTRAIT -> {
                 Column(
                     modifier = Modifier
@@ -158,7 +172,7 @@ fun WelcomeScreen() {
                     horizontalAlignment = Alignment.End
                 ) {
                     IntroText()
-                    NextButton()
+                    NextButton(onClick)
                 }
 
             }
@@ -167,8 +181,10 @@ fun WelcomeScreen() {
 }
 
 @Composable
-fun IntroText(color: Color = biruMuda,
-              textAlign : TextAlign = TextAlign.Start) {
+fun IntroText(
+    color: Color = biruMuda,
+    textAlign: TextAlign = TextAlign.Start
+) {
     Text(
         text = "Bingung mau main game apa" +
                 " yang PC-mu bisa mainkan" +
@@ -186,10 +202,10 @@ fun IntroText(color: Color = biruMuda,
 }
 
 @Composable
-fun NextButton() {
+fun NextButton(onClick: () -> Unit) {
     Button(
         shape = CircleShape,
-        onClick = { /*TODO*/ },
+        onClick = onClick,
         contentPadding = PaddingValues(0.dp),
         colors = ButtonDefaults.buttonColors(
             containerColor = Color.White,

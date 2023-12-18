@@ -10,7 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.farez.gamehub_compose.ui.screen.welcome.WelcomeScreen
+import com.farez.gamehub_compose.ui.navigation.SetupNavigation
 import com.farez.gamehub_compose.ui.theme.GameHub_ComposeTheme
 
 class MainActivity : ComponentActivity() {
@@ -23,7 +23,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    WelcomeScreen()
+                    SetupNavigation()
                 }
             }
         }

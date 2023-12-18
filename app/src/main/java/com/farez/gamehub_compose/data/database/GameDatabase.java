@@ -32,13 +32,14 @@ public abstract class GameDatabase extends RoomDatabase {
         }
         return INSTANCE;
     }
+
     public static RoomDatabase.Callback callback() {
         return new RoomDatabase.Callback() {
             @Override
             public void onCreate(@NonNull SupportSQLiteDatabase db) {
                 super.onCreate(db);
                 dbExecutor.execute(() -> {
-                    for (Game game :Game.sampleGameList()) {
+                    for (Game game : Game.sampleGameList()) {
                         INSTANCE.gameDao().insert(game);
                     }
                 });

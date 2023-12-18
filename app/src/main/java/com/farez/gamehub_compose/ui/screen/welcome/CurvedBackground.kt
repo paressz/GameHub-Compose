@@ -1,4 +1,4 @@
-package com.farez.projectsbp.activity.loginactivity;
+package com.farez.projectsbp.activity.loginactivity
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -21,7 +21,7 @@ import com.farez.gamehub_compose.ui.theme.biruMuda
 fun CurvedBackground() {
     Box(
         modifier = Modifier.fillMaxSize()
-    ){
+    ) {
         TopCurvedContainer(
             alignment = Alignment.TopCenter,
             fracttion = 0.5f,
@@ -41,17 +41,17 @@ fun CurvedBackground() {
 
 @Composable
 fun TopCurvedContainer(
-    fracttion : Float,
+    fracttion: Float,
     alignment: Alignment,
     containerColor: Color,
     backgroundColor: Color,
     contentColor: Color
 ) {
-    Box (
+    Box(
         modifier = Modifier
             .fillMaxSize()
-    ){
-        Column (
+    ) {
+        Column(
             modifier = Modifier
                 .align(alignment)
                 .fillMaxWidth()
@@ -60,7 +60,7 @@ fun TopCurvedContainer(
         ) {
 
         }
-        Card (
+        Card(
             shape = RoundedCornerShape(bottomEndPercent = 30),
             colors = CardDefaults.cardColors(
                 containerColor = containerColor,
@@ -75,19 +75,20 @@ fun TopCurvedContainer(
         }
     }
 }
+
 @Composable
 fun BottomCurvedContainer(
-    fraction : Float,
+    fraction: Float,
     alignment: Alignment,
     containerColor: Color,
     backgroundColor: Color,
     contentColor: Color
 ) {
-    Box (
+    Box(
         modifier = Modifier
             .fillMaxSize()
-    ){
-        Column (
+    ) {
+        Column(
             modifier = Modifier
                 .align(alignment)
                 .fillMaxWidth()
@@ -96,7 +97,7 @@ fun BottomCurvedContainer(
         ) {
 
         }
-        Card (
+        Card(
             shape = RoundedCornerShape(topStartPercent = 30),
             colors = CardDefaults.cardColors(
                 containerColor = containerColor,

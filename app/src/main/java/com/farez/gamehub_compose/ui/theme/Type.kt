@@ -17,12 +17,13 @@ val fontProvider = GoogleFont.Provider(
 )
 val FontSyne = FontFamily(
     Font(
-        googleFont = GoogleFont("Josefin Sans", ),
+        googleFont = GoogleFont("Josefin Sans"),
         fontProvider = fontProvider,
         weight = FontWeight.Normal,
         style = FontStyle.Normal
     ),
 )
+
 // Set of Material typography styles to start with
 val Typography = Typography(
     bodyLarge = TextStyle(
