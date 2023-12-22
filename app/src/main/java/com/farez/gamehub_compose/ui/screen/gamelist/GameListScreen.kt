@@ -2,13 +2,16 @@ package com.farez.gamehub_compose.ui.screen.gamelist
 
 import android.app.Application
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -44,69 +47,20 @@ fun GameListScreen(
         )
     )
 ) {
-    val games = appViewModel.getSafeGames().collectAsState(initial = emptyList()).value
+    val games = appViewModel.getSafeGames().collectAsState(initial = emptyList())
     LazyVerticalGrid(
         modifier = Modifier,
-        columns = GridCells.Adaptive(200.dp),
+        columns = GridCells.Adaptive(300.dp),
+        contentPadding = PaddingValues(16.dp),
+        horizontalArrangement = Arrangement.spacedBy(16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        games.forEach {
-            item {
-                GameItem(game = it)
-            }
+        items(games.value) {
+            GameItem(it.nama, it.imageUrl, it.deskripsi)
         }
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalGlideComposeApi::class)
-@Composable
-fun GameItem(game: Game) {
-    val placeholder = placeholder(R.drawable.no_image)
-    Card(
-        modifier = Modifier
-            .padding(16.dp)
-            .height(140.dp),
-        shape = RoundedCornerShape(8.dp),
-        onClick = { /*TODO*/ }
-    ) {
-        Box {
-            GlideImage(
-                model = game.imageUrl,
-                contentDescription = "Game ${game.nama}",
-                loading = placeholder,
-                failure = placeholder,
-                contentScale = ContentScale.FillBounds,
-                modifier = Modifier
-                    .fillMaxHeight()
-                    .fillMaxWidth()
-            )
-            Surface(
-                modifier = Modifier
-                    .align(Alignment.BottomCenter)
-                    .background(
-                        brush = Brush.verticalGradient(
-                            colors = listOf(
-                                Color.Transparent,
-                                Color.Black
-                            )
-                        )
-                    ),
-                color = Color.Transparent
-            ) {
-
-                Text(
-                    text = game.nama,
-                    color = Color.White,
-                    textAlign = TextAlign.Center,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(bottom = 8.dp)
-                )
-            }
-        }
-    }
-}
 
 @Preview
 @Composable
