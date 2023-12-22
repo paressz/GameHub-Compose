@@ -1,7 +1,9 @@
 package com.farez.gamehub_compose.ui.screen.gamelist
 
 import android.app.Application
+import android.util.Log
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
@@ -41,29 +43,33 @@ import com.farez.gamehub_compose.data.repository.GameRepository
 
 @Composable
 fun GameListScreen(
-    appViewModel: AppViewModel = viewModel(
-        factory = ViewModelFactory(
-            GameRepository(LocalContext.current.applicationContext as Application)
-        )
-    )
+    modifier: Modifier = Modifier,
+    appViewModel: AppViewModel,
+    navigateToDetail : (String) -> Unit
 ) {
-    val games = appViewModel.getSafeGames().collectAsState(initial = emptyList())
+    val games = appViewModel.getGames().collectAsState(initial = emptyList())
     LazyVerticalGrid(
-        modifier = Modifier,
+        modifier = modifier,
         columns = GridCells.Adaptive(300.dp),
         contentPadding = PaddingValues(16.dp),
         horizontalArrangement = Arrangement.spacedBy(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         items(games.value) {
-            GameItem(it.nama, it.imageUrl, it.deskripsi)
+            GameItem(
+                it.nama,
+                it.imageUrl,
+                it.deskripsi,
+                it.id.toString(),
+                navigateToDetail = navigateToDetail
+            )
         }
     }
 }
 
 
-@Preview
-@Composable
-fun PrevGameItem() {
-    GameListScreen()
-}
+//@Preview
+//@Composable
+//fun PrevGameItem() {
+//    GameListScreen()
+//}

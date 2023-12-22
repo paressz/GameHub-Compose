@@ -13,8 +13,8 @@ interface GameDao {
     fun getAllGame(): Flow<List<Game>>
 
     @Query("SELECT * FROM game WHERE isGameDewasa=0 ORDER BY nama")
-
     fun getSafeGames(): Flow<List<Game>>
+
 
     @Insert
     fun insert(game: Game)

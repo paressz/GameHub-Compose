@@ -38,6 +38,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.farez.gamehub_compose.R
 import com.farez.gamehub_compose.ui.navigation.Screen
+import com.farez.gamehub_compose.ui.theme.FontJosefinSans
 import com.farez.gamehub_compose.ui.theme.biruMuda
 import com.farez.projectsbp.activity.loginactivity.CurvedBackground
 
@@ -51,7 +52,10 @@ fun WelcomePrev() {
 fun WelcomeScreen(
     navController: NavController
 ) {
-    val onClick = { navController.navigate(Screen.Gamelist.route) }
+    val onClick = {
+        navController.popBackStack(Screen.Welcome.route, true)
+        navController.navigate(Screen.Main.route)
+    }
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -131,6 +135,7 @@ fun WelcomeScreen(
                         },
                         fontSize = 38.sp,
                         fontWeight = FontWeight.SemiBold,
+                        fontFamily = FontJosefinSans,
                         modifier = Modifier
                             .padding(bottom = 24.dp)
                     )
@@ -193,7 +198,7 @@ fun IntroText(
         fontSize = 26.sp,
         lineHeight = 40.sp,
         textAlign = textAlign,
-        style = MaterialTheme.typography.bodyLarge,
+        fontFamily = FontJosefinSans,
         color = color,
         modifier = Modifier
             .padding(end = 24.dp)

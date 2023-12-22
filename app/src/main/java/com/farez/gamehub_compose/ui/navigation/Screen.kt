@@ -1,15 +1,21 @@
 package com.farez.gamehub_compose.ui.navigation
 
 sealed class Screen(val route: String) {
-    object Input : Screen(ScreenName.INPUT.name)
-    object Welcome : Screen(ScreenName.WELCOME.name)
-    object Gamelist : Screen(ScreenName.GAMELIST.name)
-    object Detail : Screen(ScreenName.DETAIL.name)
+    data object Input : Screen(ScreenName.INPUT.name)
+    data object Welcome : Screen(ScreenName.WELCOME.name)
+    data object Gamelist : Screen(ScreenName.GAMELIST.name)
+    data object GamelistWithFilter : Screen(ScreenName.GAMELISTWITHFILTER.name)
+    data object Detail : Screen(ScreenName.DETAIL.name + "/{gameName}") {
+        fun createRoute(gameName : String) = ScreenName.DETAIL.name + "/$gameName"
+    }
+    data object Main : Screen(ScreenName.MAIN.name)
 }
 
 enum class ScreenName {
     INPUT,
     WELCOME,
     GAMELIST,
-    DETAIL
+    GAMELISTWITHFILTER,
+    DETAIL,
+    MAIN
 }

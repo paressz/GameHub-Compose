@@ -1,6 +1,8 @@
 package com.farez.gamehub_compose.ui.screen.inputspek
 
+import android.app.Application
 import android.content.res.Configuration
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -34,6 +36,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
@@ -45,33 +48,35 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import com.farez.gamehub_compose.AppViewModel
 import com.farez.gamehub_compose.R
+import com.farez.gamehub_compose.data.repository.GameRepository
+import com.farez.gamehub_compose.ui.navigation.Screen
 import com.farez.gamehub_compose.ui.theme.FontIceberg
 import com.farez.gamehub_compose.ui.theme.biruMuda
 import com.farez.gamehub_compose.ui.theme.biruMuda100
 import com.farez.gamehub_compose.ui.theme.darker_biru_muda
 
 @Composable
-fun InputSpekScreen() {
+fun InputSpekScreen(
+    navController: NavHostController,
+    modifier : Modifier = Modifier,
+    appViewModel: AppViewModel
+) {
     var cpu by remember { mutableStateOf("") }
     var vga by remember { mutableStateOf("") }
     var hdd by remember { mutableStateOf("") }
     var ram by remember { mutableStateOf("") }
+    val context = LocalContext.current
 
     ConstraintLayout (
-        modifier = Modifier
-            .fillMaxSize()
+        modifier = modifier
+            .fillMaxWidth()
             .verticalScroll(rememberScrollState())
     ) {
         val (cpuC, vgaC, hddC, ramC,cariC, headerC) = createRefs()
-        Header(
-            modifier = Modifier
-                .constrainAs(headerC) {
-                    top.linkTo(parent.top)
-                    start.linkTo(parent.start)
-                    end.linkTo(parent.end)
-                }
-        )
 
         CustomiezedTextField(
             text = cpu,
@@ -141,7 +146,18 @@ fun InputSpekScreen() {
                 containerColor = biruMuda,
                 contentColor = Color.White
             ),
-            onClick = { /*TODO*/ }
+            onClick = {
+                if(cpu.isEmpty() && ram.isEmpty() && hdd.isEmpty() && vga.isEmpty()) {
+                    Toast.makeText(
+                        context,
+                        "SEMUA BAGIAN HARUS DIISI",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    navController.navigate(Screen.GamelistWithFilter.route)
+                    appViewModel.setSpekData(cpu, ram, hdd, vga)
+                }
+            }
         ) {
             Text(text = "Cari Game", style = MaterialTheme.typography.bodyLarge)
         }
@@ -173,43 +189,14 @@ fun CustomiezedTextField(
            focusedBorderColor = darker_biru_muda,
            focusedLabelColor = darker_biru_muda,
            cursorColor = darker_biru_muda,
+           focusedTextColor = Color.Black,
+           unfocusedTextColor = Color.Black
        )
    )
 }
 
-@Composable
-fun Header(modifier: Modifier) {
-    Box(
-        modifier = modifier
-            .fillMaxWidth()
-            .height(120.dp)
-            .clip(RoundedCornerShape(bottomEndPercent = 50, bottomStartPercent = 50))
-            .shadow(6.dp)
-            .background(biruMuda)
-    ) {
-        Icon(
-            painter = painterResource(id = R.drawable.stikps),
-            contentDescription = null,
-            modifier = Modifier
-                .padding(end = 2.dp)
-                .align(Alignment.TopEnd),
-            tint = darker_biru_muda
-        )
-        Text(
-            text = buildAnnotatedString
-            {
-                withStyle(style = SpanStyle(color = Color.White)) {append("Game")}
-                withStyle(style = SpanStyle(color = Color.Black)) {append("Hub")}
-            },
-            fontFamily = FontIceberg,
-            fontSize = 52.sp,
-            color = Color.White,
-            modifier = Modifier.align(Alignment.Center)
-        )
-    }
-}
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_NO)
 @Composable
 fun InputSpekPrev() {
-    InputSpekScreen()
+    InputSpekScreen(rememberNavController(), appViewModel = AppViewModel(GameRepository.GetInstance(LocalContext.current.applicationContext as Application)))
 }

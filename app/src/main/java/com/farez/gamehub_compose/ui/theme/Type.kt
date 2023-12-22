@@ -23,6 +23,14 @@ val FontIceberg = FontFamily(
         style = FontStyle.Normal
     ),
 )
+val FontJosefinSans = FontFamily(
+    Font(
+        googleFont = GoogleFont("Josefin Sans"),
+        fontProvider = fontProvider,
+        weight = FontWeight.Normal,
+        style = FontStyle.Normal
+    )
+)
 
 // Set of Material typography styles to start with
 val Typography = Typography(

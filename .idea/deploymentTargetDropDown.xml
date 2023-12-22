@@ -52,24 +52,14 @@
               <type value="RUNNING_DEVICE_TARGET" />
               <deviceKey>
                 <Key>
-                  <type value="SERIAL_NUMBER" />
-                  <value value="gimzdqlj5xeqlbsg" />
+                  <type value="VIRTUAL_DEVICE_PATH" />
+                  <value value="C:\Users\taloo\.android\avd\Pixel_3a_XL_API_31.avd" />
                 </Key>
               </deviceKey>
             </Target>
           </runningDeviceTargetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2023-12-22T03:34:42.608757200Z" />
-          <multipleDevicesSelectedInDropDown value="true" />
+          <timeTargetWasSelectedWithDropDown value="2023-12-22T06:56:44.931887100Z" />
           <runningDeviceTargetsSelectedWithDialog>
-            <Target>
-              <type value="RUNNING_DEVICE_TARGET" />
-              <deviceKey>
-                <Key>
-                  <type value="SERIAL_NUMBER" />
-                  <value value="gimzdqlj5xeqlbsg" />
-                </Key>
-              </deviceKey>
-            </Target>
             <Target>
               <type value="RUNNING_DEVICE_TARGET" />
               <deviceKey>
@@ -81,6 +71,9 @@
             </Target>
           </runningDeviceTargetsSelectedWithDialog>
         </State>
+      </entry>
+      <entry key="navbar">
+        <State />
       </entry>
     </value>
   </component>

@@ -28,6 +28,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -43,7 +44,7 @@ import com.farez.gamehub_compose.ui.theme.darker_biru_muda
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalGlideComposeApi::class)
 @Composable
-fun GameItem(nama : String, imageUrl : String, deskripsi : String) {
+fun GameItem(nama : String, imageUrl : String, deskripsi : String, id : String, navigateToDetail : (String) -> Unit) {
     val placeholder = placeholder(R.drawable.no_image)
     Card(
         modifier = Modifier
@@ -57,7 +58,7 @@ fun GameItem(nama : String, imageUrl : String, deskripsi : String) {
         elevation = CardDefaults.cardElevation(
             4.dp
         ),
-        onClick = { /*TODO*/ }
+        onClick = { navigateToDetail(id) }
     ) {
         Row(
             horizontalArrangement = Arrangement.Start,
@@ -85,7 +86,10 @@ fun GameItem(nama : String, imageUrl : String, deskripsi : String) {
             ) {
                 Text(
                     text = nama,
-                    fontSize = 18.sp,
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
                     softWrap = true,
                     modifier = Modifier
                         .padding(top = 8.dp, end = 8.dp)
@@ -93,7 +97,7 @@ fun GameItem(nama : String, imageUrl : String, deskripsi : String) {
                 Text(
                     text = deskripsi,
                     maxLines = 3,
-                    fontSize = 12.sp,
+                    fontSize = 13.sp,
                     softWrap = true,
                     lineHeight = 18.sp,
                     overflow = TextOverflow.Ellipsis,
@@ -102,8 +106,8 @@ fun GameItem(nama : String, imageUrl : String, deskripsi : String) {
                     )
                 Box(
                     modifier = Modifier
-                        .fillMaxHeight(0.5f)
-                        .fillMaxWidth(0.15f)
+                        .fillMaxHeight(0.35f)
+                        .fillMaxWidth(0.2f)
                         .clip(RoundedCornerShape(topStart = 12.dp))
                         .background(darker_biru_muda)
                         .align(Alignment.End)
@@ -123,5 +127,5 @@ fun GameItem(nama : String, imageUrl : String, deskripsi : String) {
 @Preview
 @Composable
 fun item() {
-    GameItem(nama = Game.sampleGameList()[3].nama, imageUrl =  Game.sampleGameList()[3].imageUrl, deskripsi =  Game.sampleGameList()[3].deskripsi)
+    GameItem(nama = Game.sampleGameList()[3].nama, imageUrl =  Game.sampleGameList()[3].imageUrl, id = Game.sampleGameList()[3].id.toString(), deskripsi =  Game.sampleGameList()[3].deskripsi, navigateToDetail = {})
 }
