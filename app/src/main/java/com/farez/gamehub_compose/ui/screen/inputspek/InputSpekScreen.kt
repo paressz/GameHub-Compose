@@ -128,14 +128,15 @@ fun InputSpekScreen() {
             onValueChanged = {vga = it})
         Button(
             modifier = Modifier
-                .padding(horizontal = 16.dp)
+                .padding(start = 16.dp, end = 16.dp, bottom = 16.dp)
                 .fillMaxWidth()
-                .height(42.dp)
+                .height(48.dp)
                 .constrainAs(cariC) {
                     top.linkTo(vgaC.bottom, margin = 16.dp)
                     start.linkTo(parent.start, margin = 16.dp)
                     end.linkTo(parent.end, margin = 16.dp)
                 },
+            shape = RoundedCornerShape(12.dp),
             colors = ButtonDefaults.buttonColors(
                 containerColor = biruMuda,
                 contentColor = Color.White
@@ -182,7 +183,7 @@ fun Header(modifier: Modifier) {
         modifier = modifier
             .fillMaxWidth()
             .height(120.dp)
-            .clip(RoundedCornerShape(bottomEndPercent = 70, bottomStartPercent = 70))
+            .clip(RoundedCornerShape(bottomEndPercent = 50, bottomStartPercent = 50))
             .shadow(6.dp)
             .background(biruMuda)
     ) {
