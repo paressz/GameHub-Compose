@@ -15,9 +15,9 @@ val fontProvider = GoogleFont.Provider(
     providerPackage = "com.google.android.gms",
     certificates = R.array.com_google_android_gms_fonts_certs
 )
-val FontSyne = FontFamily(
+val FontIceberg = FontFamily(
     Font(
-        googleFont = GoogleFont("Josefin Sans"),
+        googleFont = GoogleFont("Iceberg"),
         fontProvider = fontProvider,
         weight = FontWeight.Normal,
         style = FontStyle.Normal
@@ -27,7 +27,7 @@ val FontSyne = FontFamily(
 // Set of Material typography styles to start with
 val Typography = Typography(
     bodyLarge = TextStyle(
-        fontFamily = FontSyne,
+        fontFamily = FontIceberg,
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp,
         lineHeight = 24.sp,
