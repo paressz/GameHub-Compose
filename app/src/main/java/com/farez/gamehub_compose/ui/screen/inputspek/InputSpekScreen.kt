@@ -143,7 +143,7 @@ fun InputSpekScreen(
                 },
             shape = RoundedCornerShape(12.dp),
             colors = ButtonDefaults.buttonColors(
-                containerColor = biruMuda,
+                containerColor = darker_biru_muda,
                 contentColor = Color.White
             ),
             onClick = {

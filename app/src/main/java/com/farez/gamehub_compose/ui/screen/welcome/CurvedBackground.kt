@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.farez.gamehub_compose.ui.theme.biruMuda
+import com.farez.gamehub_compose.ui.theme.darker_biru_muda
 
 @Preview
 @Composable
@@ -26,13 +27,13 @@ fun CurvedBackground() {
             alignment = Alignment.TopCenter,
             fracttion = 0.5f,
             containerColor = Color.White,
-            backgroundColor = biruMuda,
-            contentColor = biruMuda
+            backgroundColor = darker_biru_muda,
+            contentColor = darker_biru_muda
         )
         BottomCurvedContainer(
             fraction = 0.5f,
             alignment = Alignment.BottomCenter,
-            containerColor = biruMuda,
+            containerColor = darker_biru_muda,
             backgroundColor = Color.White,
             contentColor = Color.Black
         )

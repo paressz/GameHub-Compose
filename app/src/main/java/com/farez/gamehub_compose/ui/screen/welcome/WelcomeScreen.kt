@@ -40,6 +40,7 @@ import com.farez.gamehub_compose.R
 import com.farez.gamehub_compose.ui.navigation.Screen
 import com.farez.gamehub_compose.ui.theme.FontJosefinSans
 import com.farez.gamehub_compose.ui.theme.biruMuda
+import com.farez.gamehub_compose.ui.theme.darker_biru_muda
 import com.farez.projectsbp.activity.loginactivity.CurvedBackground
 
 @Preview
@@ -187,7 +188,7 @@ fun WelcomeScreen(
 
 @Composable
 fun IntroText(
-    color: Color = biruMuda,
+    color: Color = darker_biru_muda,
     textAlign: TextAlign = TextAlign.Start
 ) {
     Text(
@@ -224,7 +225,7 @@ fun NextButton(onClick: () -> Unit) {
         Icon(
             painter = painterResource(id = R.drawable.round_navigate_next_24),
             contentDescription = "Navigate to home screen",
-            tint = biruMuda,
+            tint = darker_biru_muda,
             modifier = Modifier
                 .size(42.dp)
         )

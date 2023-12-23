@@ -39,7 +39,7 @@ fun Header(modifier: Modifier) {
                 )
             )
             .shadow(6.dp)
-            .background(biruMuda)
+            .background(darker_biru_muda)
             .clip(
                 RoundedCornerShape(
                     bottomEndPercent = 50,
@@ -53,7 +53,7 @@ fun Header(modifier: Modifier) {
             modifier = Modifier
                 .padding(end = 2.dp)
                 .align(Alignment.TopEnd),
-            tint = darker_biru_muda
+            tint = biruMuda
         )
        Text(
             text = buildAnnotatedString
