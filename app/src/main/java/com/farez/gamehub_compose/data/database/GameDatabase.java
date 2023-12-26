@@ -13,7 +13,7 @@ import com.farez.gamehub_compose.data.model.Game;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-
+//KELAS UNTUK MEMBUAT DATABASE
 @Database(entities = {Game.class}, version = 1)
 public abstract class GameDatabase extends RoomDatabase {
     public abstract GameDao gameDao();
@@ -33,6 +33,7 @@ public abstract class GameDatabase extends RoomDatabase {
         return INSTANCE;
     }
 
+    /////   22222222
     public static RoomDatabase.Callback callback() {
         return new RoomDatabase.Callback() {
             @Override

@@ -23,13 +23,13 @@ import com.farez.gamehub_compose.ui.screen.welcome.WelcomeScreen
 @Composable
 fun SetupNavigation() {
     var navController = rememberNavController()
-    val navigateToDetail : (String) -> Unit = {
+    val navigateToDetail: (String) -> Unit = {
         navController.navigate(
             Screen.Detail.createRoute(it)
         )
         Log.d("NAV DATA", "SetupNavigation: $it")
     }
-    val appViewModel : AppViewModel = viewModel(
+    val appViewModel: AppViewModel = viewModel(
         factory = ViewModelFactory(
             GameRepository.GetInstance(LocalContext.current.applicationContext as Application)
         )
@@ -40,7 +40,7 @@ fun SetupNavigation() {
         }
         composable(
             route = Screen.Detail.route,
-            arguments = listOf(navArgument("gameName"){type = NavType.StringType})
+            arguments = listOf(navArgument("gameName") { type = NavType.StringType })
         ) {
             val gameName = it.arguments?.getString("gameName")
             if (gameName != null) {

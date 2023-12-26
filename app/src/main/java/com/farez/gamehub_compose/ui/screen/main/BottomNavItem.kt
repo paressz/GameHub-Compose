@@ -17,7 +17,12 @@ import com.farez.gamehub_compose.ui.theme.darker_biru_muda
 
 
 @Composable
-fun BottomNavItem(iconId : Int, title : String, selected : Boolean = false ,modifier: Modifier = Modifier) {
+fun BottomNavItem(
+    iconId: Int,
+    title: String,
+    selected: Boolean = false,
+    modifier: Modifier = Modifier
+) {
     Column(
         modifier = modifier
             .width(64.dp)

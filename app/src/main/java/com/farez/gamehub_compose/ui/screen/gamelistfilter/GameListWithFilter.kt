@@ -1,8 +1,6 @@
 package com.farez.gamehub_compose.ui.screen.gamelistfilter
 
-import android.util.Log
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -20,7 +18,7 @@ import com.farez.gamehub_compose.ui.screen.gamelist.GameItem
 fun GameListWithFilter(
     modifier: Modifier = Modifier,
     appViewModel: AppViewModel,
-    navigateToDetail : (String) -> Unit
+    navigateToDetail: (String) -> Unit
 ) {
     val cpu = appViewModel.cpu
     val ram = appViewModel.ram
@@ -39,7 +37,9 @@ fun GameListWithFilter(
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         games.value.forEach { game ->
-            if (game.cpu.contains(cpu) && game.vga.contains(vga) && game.hdd < hdd.toInt() && game.ram < ram.toInt())
+            if (game.cpu.uppercase().contains(cpu.uppercase()) && game.vga.uppercase()
+                    .contains(vga.uppercase()) && game.hdd < hdd.toInt() && game.ram < ram.toInt()
+            )
                 item {
                     GameItem(
                         game.nama,

@@ -14,7 +14,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import com.farez.gamehub_compose.ui.theme.biruMuda
 import com.farez.gamehub_compose.ui.theme.darker_biru_muda
 
 @Preview

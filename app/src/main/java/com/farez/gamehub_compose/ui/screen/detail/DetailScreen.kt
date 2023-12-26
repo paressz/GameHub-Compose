@@ -2,19 +2,13 @@ package com.farez.gamehub_compose.ui.screen.detail
 
 import android.app.Application
 import android.content.res.Configuration
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
@@ -34,8 +28,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.constraintlayout.compose.ConstraintLayout
-import androidx.constraintlayout.compose.Dimension
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
@@ -46,13 +38,12 @@ import com.farez.gamehub_compose.ViewModelFactory
 import com.farez.gamehub_compose.data.model.Game
 import com.farez.gamehub_compose.data.repository.GameRepository
 import com.farez.gamehub_compose.ui.theme.biruMuda
-import kotlin.math.roundToInt
 
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 fun DetailScreen(
-    gameId : String,
+    gameId: String,
     appViewModel: AppViewModel = viewModel(
         factory = ViewModelFactory(
             GameRepository.GetInstance(LocalContext.current.applicationContext as Application)
@@ -103,7 +94,7 @@ fun DetailScreen(
                             bottom = 16.dp
                         )
                 ) {
-                    Column (
+                    Column(
                         modifier = Modifier
                             .padding(16.dp)
                     ) {
@@ -113,7 +104,7 @@ fun DetailScreen(
                             fontSize = 32.sp,
                             fontWeight = FontWeight.Bold,
                             modifier =
-                                Modifier.padding(bottom = 8.dp)
+                            Modifier.padding(bottom = 8.dp)
                         )
                         Text(
                             text = game.deskripsi,
@@ -124,36 +115,40 @@ fun DetailScreen(
                         SpekItem(
                             item = "CPU",
                             spek = game.cpu,
-                            iconId = R.drawable.cpu_svgrepo_com)
+                            iconId = R.drawable.cpu_svgrepo_com
+                        )
                         SpekItem(
                             item = "VGA",
                             spek = game.vga,
-                            iconId = R.drawable.gpu_svgrepo_com)
+                            iconId = R.drawable.gpu_svgrepo_com
+                        )
                         SpekItem(
                             item = "RAM",
                             spek = game.ram.toString() + " GB",
-                            iconId = R.drawable.ram_svgrepo_com)
+                            iconId = R.drawable.ram_svgrepo_com
+                        )
                         SpekItem(
                             item = "Storage",
                             spek = game.hdd.toString() + " GB",
-                            iconId = R.drawable.ssd_svgrepo_com)
+                            iconId = R.drawable.ssd_svgrepo_com
+                        )
                     }
 
                 }
             }
         }
-        
+
     }
 
 }
 
 @Composable
-fun SpekItem(item : String, spek : String, iconId : Int, modifier: Modifier = Modifier) {
-    Row (
+fun SpekItem(item: String, spek: String, iconId: Int, modifier: Modifier = Modifier) {
+    Row(
         modifier = modifier
             .padding(top = 16.dp)
             .fillMaxWidth()
-    ){
+    ) {
         Icon(
             painter = painterResource(id = iconId),
             contentDescription = null,
@@ -169,7 +164,7 @@ fun SpekItem(item : String, spek : String, iconId : Int, modifier: Modifier = Mo
                 text = item,
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding( bottom = 8.dp)
+                modifier = Modifier.padding(bottom = 8.dp)
             )
             Text(
                 text = spek,
@@ -179,6 +174,7 @@ fun SpekItem(item : String, spek : String, iconId : Int, modifier: Modifier = Mo
         }
     }
 }
+
 @Preview
 @Composable
 fun DetailPrev() {

@@ -6,8 +6,9 @@ sealed class Screen(val route: String) {
     data object Gamelist : Screen(ScreenName.GAMELIST.name)
     data object GamelistWithFilter : Screen(ScreenName.GAMELISTWITHFILTER.name)
     data object Detail : Screen(ScreenName.DETAIL.name + "/{gameName}") {
-        fun createRoute(gameName : String) = ScreenName.DETAIL.name + "/$gameName"
+        fun createRoute(gameName: String) = ScreenName.DETAIL.name + "/$gameName"
     }
+
     data object Main : Screen(ScreenName.MAIN.name)
 }
 

@@ -28,7 +28,7 @@ import com.farez.gamehub_compose.ui.theme.darker_biru_muda
 
 @Composable
 fun Header(modifier: Modifier) {
-   Box(
+    Box(
         modifier = modifier
             .fillMaxWidth()
             .height(100.dp)
@@ -55,7 +55,7 @@ fun Header(modifier: Modifier) {
                 .align(Alignment.TopEnd),
             tint = biruMuda
         )
-       Text(
+        Text(
             text = buildAnnotatedString
             {
                 withStyle(style = SpanStyle(color = Color.White)) { append("Game") }

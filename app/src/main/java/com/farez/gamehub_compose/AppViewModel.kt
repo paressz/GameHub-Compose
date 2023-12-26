@@ -2,28 +2,24 @@ package com.farez.gamehub_compose
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
 import com.farez.gamehub_compose.data.model.Game
 import com.farez.gamehub_compose.data.repository.GameRepository
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.launch
 
 class AppViewModel(private val gameRepository: GameRepository) : ViewModel() {
 
-    var cpu : String = ""
+    var cpu: String = ""
         private set
-    var ram : String = ""
+    var ram: String = ""
         private set
-    var hdd : String = ""
+    var hdd: String = ""
         private set
-    var vga : String = ""
+    var vga: String = ""
         private set
 
-    fun getGames() : Flow<List<Game>> = gameRepository.getAllGames()
+    fun getGames(): Flow<List<Game>> = gameRepository.getAllGames()
 
-    fun setSpekData(cpu : String, ram : String, hdd : String, vga : String) {
+    fun setSpekData(cpu: String, ram: String, hdd: String, vga: String) {
         this.cpu = cpu
         this.ram = ram
         this.hdd = hdd

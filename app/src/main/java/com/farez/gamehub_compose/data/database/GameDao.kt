@@ -7,6 +7,8 @@ import androidx.room.Query
 import com.farez.gamehub_compose.data.model.Game
 import kotlinx.coroutines.flow.Flow
 
+//KELAS UNTUK AKSES DATA DARI DATABASE
+
 @Dao
 interface GameDao {
     @Query("SELECT * FROM game ORDER BY nama")

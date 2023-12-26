@@ -3,16 +3,11 @@ package com.farez.gamehub_compose.ui.screen.main
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.Icon
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -23,25 +18,24 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.currentBackStackEntryAsState
 import com.farez.gamehub_compose.AppViewModel
 import com.farez.gamehub_compose.R
 import com.farez.gamehub_compose.ui.screen.gamelist.GameListScreen
 import com.farez.gamehub_compose.ui.screen.inputspek.InputSpekScreen
-import com.farez.gamehub_compose.ui.theme.biruMuda
 
 @Composable
-fun MainScreen(navController: NavHostController, appViewModel: AppViewModel, navigateToDetail : (String) -> Unit) {
+fun MainScreen(
+    navController: NavHostController,
+    appViewModel: AppViewModel,
+    navigateToDetail: (String) -> Unit
+) {
 
-    var isInputScreenSelected by remember { mutableStateOf(true) }
-    val onClick : (Boolean) -> Unit = {
+    var isInputScreenSelected by remember { mutableStateOf(false) }
+    val onClick: (Boolean) -> Unit = {
         isInputScreenSelected = it
     }
     ConstraintLayout(
@@ -49,7 +43,7 @@ fun MainScreen(navController: NavHostController, appViewModel: AppViewModel, nav
             .fillMaxSize()
             .background(Color.White)
     ) {
-        val( navBar, inputSc, gameListSc,header) = createRefs()
+        val (navBar, inputSc, gameListSc, header) = createRefs()
 
         Header(
             modifier = Modifier
@@ -61,7 +55,7 @@ fun MainScreen(navController: NavHostController, appViewModel: AppViewModel, nav
 
                 }
         )
-        if(isInputScreenSelected) {
+        if (isInputScreenSelected) {
             InputSpekScreen(
                 navController = navController,
                 appViewModel = appViewModel,
@@ -79,13 +73,13 @@ fun MainScreen(navController: NavHostController, appViewModel: AppViewModel, nav
                 appViewModel = appViewModel,
                 navigateToDetail = navigateToDetail,
                 modifier = Modifier
-                .constrainAs(gameListSc) {
-                    top.linkTo(header.bottom)
-                    start.linkTo(parent.start)
-                    end.linkTo(parent.end)
-                    bottom.linkTo(parent.bottom)
-                    height = Dimension.fillToConstraints
-                }
+                    .constrainAs(gameListSc) {
+                        top.linkTo(header.bottom)
+                        start.linkTo(parent.start)
+                        end.linkTo(parent.end)
+                        bottom.linkTo(parent.bottom)
+                        height = Dimension.fillToConstraints
+                    }
             )
         }
         BottomNavBar(
@@ -103,9 +97,13 @@ fun MainScreen(navController: NavHostController, appViewModel: AppViewModel, nav
 
 
 @Composable
-fun BottomNavBar(navController : NavHostController, modifier: Modifier = Modifier, onClick : (Boolean) -> Unit) {
-    var isInputSelected by remember { mutableStateOf(true) }
-    val changeInput : (Boolean) -> Unit = {isInputSelected = it}
+fun BottomNavBar(
+    navController: NavHostController,
+    modifier: Modifier = Modifier,
+    onClick: (Boolean) -> Unit
+) {
+    var isInputSelected by remember { mutableStateOf(false) }
+    val changeInput: (Boolean) -> Unit = { isInputSelected = it }
     Box(
         modifier = modifier
             .navigationBarsPadding()
